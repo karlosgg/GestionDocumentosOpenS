@@ -1,0 +1,40 @@
+
+/* 
+    Created on : 12-15-2016, 06:24:35 PM
+    Author     : José Carlos Grijalva González
+*/
+
+.footer{
+    display: block;
+    position: static;
+    bottom: 20px;
+    height: 20px;
+    width: 100%;
+    text-align:center;
+}
+
+.order-table{
+	border-collapse:collapse;
+        position: relative;
+}
+
+.order-table-header{
+	text-align:center;
+	background:none repeat scroll 0 0 #E5E5E5;
+	border-bottom:1px solid #BBBBBB;
+	padding:12px;
+}
+
+.order-table-odd-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #FFFFFFF;
+	border-top:1px solid #CCCCCC;
+        padding: 10px;
+}
+
+.order-table-even-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #c7daea;
+	border-top:1px solid #BBBBBB;
+        padding: 10px;
+}

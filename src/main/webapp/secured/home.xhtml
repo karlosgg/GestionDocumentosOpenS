@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"  
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Panel de Control - Clínica médica ABC - #{loginBean.user}</title>
+        <h:outputStylesheet library="css" name="style.css"  />
+    </h:head>
+    <h:body >
+        <b:container>
+            <!--<b:navBar brand="Brand" brandHref="#">-->
+            <b:navBar >
+                <b:navbarLinks>
+                   <b:row>
+                        <b:column>
+                            <h3>Panel de Control - Clínica médica ABC</h3>
+                            <h4>Bienvenido <span class="fa fa-check" ></span>#{loginBean.nombre}</h4>
+                        </b:column>
+                    </b:row>
+                </b:navbarLinks>
+                
+                <!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
+                <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
+                  <b:navbarLinks pull="right" styleClass="hidden-xs">
+                    <b:navLink href="#">
+                    <h:form>
+                        <h:outputText id="dateField" value="#{holaBean.when}"/>
+                        <br />
+                        <h:outputText id="timeField" value="#{holaBean.hora}"/>
+                        <!--<h:commandButton value="Actualizar Hora">
+                            <f:ajax render="timeField"/>
+                        </h:commandButton>-->
+                    </h:form>
+                    </b:navLink >
+                    <b:navLink href="#">
+                    <h:form>
+                        <b:commandButton action="#{loginBean.doLogout()}" value="Salir " styleClass="btn btn-default act-submit" look="info" >
+                            <b:iconAwesome name="sign-out" />
+                        </b:commandButton>
+                    </h:form>
+                    </b:navLink>
+                </b:navbarLinks>
+               
+            </b:navBar>
+            
+            <!--form no se muestra-->
+            <h:form style="display: none;">
+                <h:commandButton action="#{loginBean.doLogout()}" value="Salir" styleClass="btn btn-default act-submit"/>
+                <br />
+                <h:outputText value="Tiempo del servidor: "/>
+                <h:outputText id="timeField" value="#{holaBean.when}"/>
+                <h:outputText value=" "/>
+                <h:commandButton value="Actualizar Hora">
+                    <f:ajax render="timeField"/>
+                </h:commandButton>
+            </h:form>
+            <!--Tab principal-->
+            <h:form>
+            <b:tabLinks>
+                <b:navCommandLink value="Pacientes" process="panelPrincipal" actionListener="#{loginBean.commandTabClicked}" update="@form"
+                                  iconAwesome="fa-group" iconAlign="right" id="tab_pacientes" active="#{loginBean.t1}" />
+                
+                <b:navCommandLink value="Consultas" process="panelPrincipal" actionListener="#{loginBean.commandTabClicked}" 
+                                   iconAlign="right" iconAwesome="book" id="tab_consultas" active="#{loginBean.t2}" update="@form"/>
+                 
+                <b:navCommandLink value="Diagnósticos" process="panelPrincipal" actionListener="#{loginBean.commandTabClicked}" 
+                                   iconAwesome="heartbeat" iconAlign="right" id="tab_diagnosticos" active="#{loginBean.t3}" update="@form"/>
+                 
+                <b:navCommandLink value="Reportes" process="panelPrincipal" actionListener="#{loginBean.commandTabClicked}"  
+                                   iconAlign="right" iconAwesome="file" id="tab_reportes" active="#{loginBean.t4}" update="@form"/>
+            </b:tabLinks>
+            <!-- Fin Tab principál-->
+            <b:panel title="" collapsible="false" id="panelPrincipal" style="min-height: 80%">
+                <ui:include src="#{loginBean.pag}" />
+            </b:panel>
+            </h:form>
+        </b:container>
+        
+        <ui:insert name="footer" >
+            <ui:include src="/secured/template/footer.xhtml" />
+    	</ui:insert>
+    </h:body>
+</html>
+
